@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 Widget repoCard({
   required String name,
@@ -58,7 +59,7 @@ Widget repoCard({
                     radius: 14,
                     backgroundColor: Colors.grey.shade300,
                     backgroundImage: image.isNotEmpty
-                        ? NetworkImage(image)
+                        ? CachedNetworkImageProvider(image)
                         : null,
                     child: image.isNotEmpty
                         ? null
@@ -68,6 +69,7 @@ Widget repoCard({
                             color: Colors.white,
                           ),
                   ),
+
                   const SizedBox(width: 6),
 
                   Text(

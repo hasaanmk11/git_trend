@@ -41,28 +41,33 @@ class _HomePageState extends State<HomePage> {
           if (value.isLoading) {
             return Center(child: CircularProgressIndicator());
           }
-          return ListView.builder(
-            controller: AppScrollCtrl.scrollController,
-            itemCount: value.repos.length + 1,
-            itemBuilder: (_, index) {
-              if (index == value.repos.length) {
-                return value.isMoreLoading
-                    ? const Padding(
-                        padding: EdgeInsets.all(20),
-                        child: Center(child: CircularProgressIndicator()),
-                      )
-                    : const SizedBox();
-              }
-
-              final repo = value.repos[index];
-              return repoCard(
-                image: repo.owner.avatarUrl,
-                name: repo.name,
-                description: repo.description,
-                stars: repo.stars.toString(),
-                owner: repo.owner.username,
-              );
+          return RefreshIndicator(
+            onRefresh: () async {
+              await context.read<RepoProvider>().refresh();
             },
+            child: ListView.builder(
+              controller: AppScrollCtrl.scrollController,
+              itemCount: value.repos.length + 1,
+              itemBuilder: (_, index) {
+                if (index == value.repos.length) {
+                  return value.isMoreLoading
+                      ? const Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Center(child: CircularProgressIndicator()),
+                        )
+                      : const SizedBox();
+                }
+
+                final repo = value.repos[index];
+                return repoCard(
+                  image: repo.owner.avatarUrl,
+                  name: repo.name,
+                  description: repo.description,
+                  stars: repo.stars.toString(),
+                  owner: repo.owner.username,
+                );
+              },
+            ),
           );
         },
       ),

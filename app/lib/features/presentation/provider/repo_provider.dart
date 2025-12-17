@@ -36,6 +36,13 @@ class RepoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> refresh() async {
+    currentPage = 1;
+    repos.clear();
+    notifyListeners();
+    await loadRepos();
+  }
+
   Future<void> loadMore() async {
     if (isMoreLoading || !hasMore) return;
 
