@@ -1,22 +1,24 @@
 import 'package:app/features/data/datasources/data_source.dart';
+import 'package:app/features/data/datasources/local_repo.dart';
 import 'package:app/features/data/repositories/git_repo_imp.dart';
-import 'package:app/features/domain/usecases/fetch_trending_repos.dart';
-import 'package:app/features/presentation/app.dart';
-import 'package:app/features/presentation/provider/repo_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
+import 'features/domain/usecases/fetch_trending_repos.dart';
+import 'features/presentation/provider/repo_provider.dart';
+import 'features/presentation/pages/home_page.dart';
+
 void main() {
   final remote = GithubRemoteDatasource();
-  final repoImpl = GithubRepositoryImpl(remote);
-  final fetchUsecase = FetchTrendingRepos(repoImpl);
+  final local = GithubLocalDatasource();
+  final repo = GithubRepositoryImpl(remote, local);
+  final usecase = FetchTrendingRepos(repo);
 
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => RepoProvider(fetchUsecase)),
-      ],
-      child: MyApp(),
+      providers: [ChangeNotifierProvider(create: (_) => RepoProvider(usecase))],
+      child: MaterialApp(home: HomePage()),
     ),
   );
 }
