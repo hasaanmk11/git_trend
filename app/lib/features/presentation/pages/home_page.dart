@@ -1,4 +1,5 @@
 import 'package:app/features/core/const/app_scroll_ctrl.dart';
+import 'package:app/features/core/utils/number_format.dart';
 import 'package:app/features/presentation/provider/repo_provider.dart';
 import 'package:app/features/presentation/widgets/repos_crad.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,8 @@ class _HomePageState extends State<HomePage> {
                   image: repo.owner.avatarUrl,
                   name: repo.name,
                   description: repo.description,
-                  stars: repo.stars.toString(),
+                  stars: formatStars(repo.stars),
+
                   owner: repo.owner.username,
                 );
               },
