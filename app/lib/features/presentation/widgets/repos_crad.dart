@@ -5,6 +5,7 @@ Widget repoCard({
   required String description,
   required String stars,
   required String owner,
+  required String image,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -50,14 +51,25 @@ Widget repoCard({
                   Text('$stars stars'),
                 ],
               ),
+
               Row(
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 14,
-                    backgroundColor: Colors.grey,
-                    child: Icon(Icons.person, size: 16, color: Colors.white),
+                    backgroundColor: Colors.grey.shade300,
+                    backgroundImage: image.isNotEmpty
+                        ? NetworkImage(image)
+                        : null,
+                    child: image.isNotEmpty
+                        ? null
+                        : const Icon(
+                            Icons.person,
+                            size: 16,
+                            color: Colors.white,
+                          ),
                   ),
                   const SizedBox(width: 6),
+
                   Text(
                     owner,
                     style: const TextStyle(fontWeight: FontWeight.w500),

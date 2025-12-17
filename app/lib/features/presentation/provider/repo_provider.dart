@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import '../../domain/entities/repo.dart';
 import '../../domain/usecases/fetch_trending_repos.dart';
@@ -21,6 +23,10 @@ class RepoProvider extends ChangeNotifier {
       currentPage = 1;
       final result = await fetchTrendingRepos(currentPage);
       repos = result;
+      for (var element in result) {
+        log(element.name);
+        log(element.description);
+      }
       hasMore = result.length == 30;
     } catch (e) {
       print("Error loading repos: $e");

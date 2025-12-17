@@ -1,77 +1,49 @@
+import 'package:app/features/presentation/provider/repo_provider.dart';
 import 'package:app/features/presentation/widgets/repos_crad.dart';
 import 'package:flutter/material.dart';
 import 'package:app/features/core/widgets/app_bar.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<RepoProvider>().loadRepos();
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       backgroundColor: const Color(0xffF2F4F7),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              'Top starred repositories created in the last 60 days.',
-              style: TextStyle(fontSize: 14, color: Colors.grey),
-            ),
-          ),
-          Expanded(
-            child: ListView(
-              children: [
-                repoCard(
-                  name: 'flutter_riverpod',
-                  description:
-                      'A simple and scalable state management solution for Flutter.',
-                  stars: '4.5k',
-                  owner: 'rrousselGit',
-                ),
-                repoCard(
-                  name: 'langchain',
-                  description:
-                      'Building applications with LLMs through composable components.',
-                  stars: '3.8k',
-                  owner: 'hwchase17',
-                ),
-                repoCard(
-                  name: 'github-readme-activity-graph',
-                  description:
-                      'A dynamically generated activity graph for your README.',
-                  stars: '3.2k',
-                  owner: 'ashutosh00710',
-                ),
-                repoCard(
-                  name: 'open-interpreter',
-                  description:
-                      'Run code in natural language. Sandbox for AI agents.',
-                  stars: '2.9k',
-                  owner: 'killian',
-                ),
-                repoCard(
-                  name: 'suno-bark',
-                  description:
-                      'Generative audio model that can synthesize realistic speech.',
-                  stars: '2.5k',
-                  owner: 'suno-ai',
-                ),
-
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: Center(
-                    child: Text(
-                      'Loading more...',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+      body: Consumer<RepoProvider>(
+        builder: (context, value, child) {
+          if (value.isLoading) {
+            return CircularProgressIndicator();
+          }
+          return ListView.builder(
+            itemCount: value.repos.length,
+            itemBuilder: (_, i) {
+              final repo = value.repos[i];
+              return repoCard(
+                image: repo.owner.avatarUrl,
+                name: repo.name,
+                description: repo.description,
+                stars: repo.stars.toString(),
+                owner: repo.owner.username,
+              );
+            },
+          );
+        },
       ),
     );
   }
