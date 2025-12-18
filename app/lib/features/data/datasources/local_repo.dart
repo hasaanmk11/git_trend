@@ -3,7 +3,11 @@ import 'package:app/features/data/models/owner.dart';
 import 'package:app/features/data/models/repo.dart';
 import 'package:sqflite/sqflite.dart';
 
+/// Handles local caching of repositories using SQLite (Sqflite).
 class GithubLocalDatasource {
+  /// Stores repositories into local database.
+  ///
+  /// Existing records are replaced to keep data fresh.
   Future<void> cacheRepos(List<RepoModel> repos) async {
     final db = await AppDatabase.database;
 
@@ -16,6 +20,9 @@ class GithubLocalDatasource {
     }
   }
 
+  /// Retrieves cached repositories from local database.
+  ///
+  /// Used when network is unavailable.
   Future<List<RepoModel>> getCachedRepos() async {
     final db = await AppDatabase.database;
     final rows = await db.query('repos');

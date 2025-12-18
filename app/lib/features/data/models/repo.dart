@@ -1,8 +1,9 @@
 import 'package:app/features/data/models/owner.dart';
-
 import '../../domain/entities/repo.dart';
 
-
+/// Data model for a GitHub repository.
+///
+/// Converts API and database data into a domain-level [Repo] entity.
 class RepoModel extends Repo {
   RepoModel({
     required String name,
@@ -11,6 +12,7 @@ class RepoModel extends Repo {
     required OwnerModel owner,
   }) : super(name: name, description: description, stars: stars, owner: owner);
 
+  /// Creates a [RepoModel] from GitHub API JSON response.
   factory RepoModel.fromJson(Map<String, dynamic> json) {
     return RepoModel(
       name: json['name'] ?? '',
@@ -20,6 +22,7 @@ class RepoModel extends Repo {
     );
   }
 
+  /// Converts the repository into a map for SQLite storage.
   Map<String, dynamic> toMap() {
     return {
       'name': name,

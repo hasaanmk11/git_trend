@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:app/features/core/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 
+/// Home screen displaying the list of trending GitHub repositories.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -18,10 +19,12 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
+    /// Load repositories after the first frame is rendered.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<RepoProvider>().loadRepos();
     });
 
+    /// Listen to scroll events to trigger pagination.
     AppScrollCtrl.scrollController.addListener(() {
       final provider = context.read<RepoProvider>();
 
@@ -32,20 +35,19 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-
       backgroundColor: const Color(0xffF2F4F7),
       body: Consumer<RepoProvider>(
         builder: (context, value, child) {
           if (value.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
+
           return RefreshIndicator(
-            onRefresh: () async {
-              await context.read<RepoProvider>().refresh();
-            },
+            onRefresh: () => context.read<RepoProvider>().refresh(),
             child: ListView.builder(
               controller: AppScrollCtrl.scrollController,
               itemCount: value.repos.length + 1,
@@ -65,7 +67,6 @@ class _HomePageState extends State<HomePage> {
                   name: repo.name,
                   description: repo.description,
                   stars: formatStars(repo.stars),
-
                   owner: repo.owner.username,
                 );
               },

@@ -1,16 +1,18 @@
-# app
+📱 Features
+🔥 Lists most starred GitHub repositories
 
-A new Flutter project.
+📆 Filters repositories created in the last 60 days
 
-## Getting Started
+📄 Pagination (loads 30 repositories per page)
 
-This project is a starting point for a Flutter application.
+🔄 Pull‑to‑refresh
 
-A few resources to get you started if this is your first Flutter project:
+♾️ Infinite scrolling
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+📦 Offline support using SQflite
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🖼️ Avatar image caching using cached_network_image
+
+🧹 Clean Architecture (Data / Domain / Presentation)
+
+🎯 Well‑documented & readable code
