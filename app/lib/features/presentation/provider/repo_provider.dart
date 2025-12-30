@@ -44,6 +44,7 @@ class RepoProvider extends ChangeNotifier {
       }
 
       hasMore = result.length == 30;
+      log("has more");
     } catch (e) {
       log("Error loading repos: $e");
     }

@@ -17,7 +17,7 @@ class GithubRepositoryImpl implements GithubRepository {
   @override
   Future<List<Repo>> fetchTrendingRepos(int page) async {
     try {
-      final repos = await remote.fetchRepos(page);
+      final repos = await remote.fetchRepos(page: page, days: 30);
 
       // Cache only first page for offline usage
       if (page == 1) {
