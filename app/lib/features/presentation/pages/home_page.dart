@@ -1,12 +1,11 @@
 import 'package:app/features/core/const/app_scroll_ctrl.dart';
 import 'package:app/features/core/utils/number_format.dart';
+import 'package:app/features/core/widgets/app_bar.dart';
 import 'package:app/features/presentation/provider/repo_provider.dart';
 import 'package:app/features/presentation/widgets/repos_crad.dart';
 import 'package:flutter/material.dart';
-import 'package:app/features/core/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 
-/// Home screen displaying the list of trending GitHub repositories.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -25,14 +24,18 @@ class _HomePageState extends State<HomePage> {
     });
 
     /// Listen to scroll events to trigger pagination.
-    AppScrollCtrl.scrollController.addListener(() {
-      final provider = context.read<RepoProvider>();
+    AppScrollCtrl.scrollController.addListener(_onScroll);
+  }
 
-      if (AppScrollCtrl.scrollController.position.pixels >=
-          AppScrollCtrl.scrollController.position.maxScrollExtent - 200) {
-        provider.loadMore();
-      }
-    });
+  void _onScroll() {
+    final provider = context.read<RepoProvider>();
+
+    if (AppScrollCtrl.scrollController.position.pixels >=
+            AppScrollCtrl.scrollController.position.maxScrollExtent - 200 &&
+        !provider.isMoreLoading &&
+        !provider.isLoading) {
+      provider.loadMore();
+    }
   }
 
   @override
@@ -42,8 +45,12 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xffF2F4F7),
       body: Consumer<RepoProvider>(
         builder: (context, value, child) {
-          if (value.isLoading) {
-            return const Center(child: CircularProgressIndicator());
+          if (value.isLoading && value.repos.isEmpty) {
+            return ListView.builder(
+              controller: AppScrollCtrl.scrollController,
+              itemCount: 6,
+              itemBuilder: (_, __) => const RepoCard(isLoading: true),
+            );
           }
 
           return RefreshIndicator(
@@ -52,17 +59,15 @@ class _HomePageState extends State<HomePage> {
               controller: AppScrollCtrl.scrollController,
               itemCount: value.repos.length + 1,
               itemBuilder: (_, index) {
+                /// 🔹 Pagination shimmer
                 if (index == value.repos.length) {
                   return value.isMoreLoading
-                      ? const Padding(
-                          padding: EdgeInsets.all(20),
-                          child: Center(child: CircularProgressIndicator()),
-                        )
+                      ? const RepoCard(isLoading: true)
                       : const SizedBox();
                 }
 
                 final repo = value.repos[index];
-                return repoCard(
+                return RepoCard(
                   image: repo.owner.avatarUrl,
                   name: repo.name,
                   description: repo.description,
