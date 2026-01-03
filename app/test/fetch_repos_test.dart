@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/testing.dart';
 import 'package:http/http.dart' as http;
-import 'package:app/features/data/datasources/data_source.dart';
-import 'package:app/features/data/models/repo.dart';
+import 'package:app/home/features/data/datasources/data_source.dart';
+import 'package:app/home/features/data/models/repo.dart';
 
 void main() {
   test(

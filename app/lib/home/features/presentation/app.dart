@@ -1,5 +1,5 @@
-import 'package:app/features/core/theme/theme_data.dart';
-import 'package:app/features/presentation/pages/home_page.dart';
+import 'package:app/home/features/core/theme/theme_data.dart';
+import 'package:app/home/features/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 /// The root widget of the Flutter application.

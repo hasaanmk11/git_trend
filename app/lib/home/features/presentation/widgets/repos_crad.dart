@@ -1,4 +1,4 @@
-import 'package:app/features/presentation/widgets/shimmer_helpers.dart';
+import 'package:app/home/features/presentation/widgets/shimmer_helpers.dart';
 import 'package:flutter/material.dart';
 
 class RepoCard extends StatelessWidget {

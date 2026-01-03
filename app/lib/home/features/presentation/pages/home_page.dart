@@ -1,9 +1,9 @@
-import 'package:app/features/core/const/app_scroll_ctrl.dart';
-import 'package:app/features/core/utils/number_format.dart';
-import 'package:app/features/core/widgets/app_bar.dart';
-import 'package:app/features/presentation/provider/repo_provider.dart';
-import 'package:app/features/presentation/widgets/details.dart';
-import 'package:app/features/presentation/widgets/repos_crad.dart';
+import 'package:app/home/features/core/const/app_scroll_ctrl.dart';
+import 'package:app/home/features/core/utils/number_format.dart';
+import 'package:app/home/features/core/widgets/app_bar.dart';
+import 'package:app/home/features/presentation/provider/repo_provider.dart';
+import 'package:app/home/features/presentation/widgets/details.dart';
+import 'package:app/home/features/presentation/widgets/repos_crad.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

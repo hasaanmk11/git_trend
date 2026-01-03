@@ -1,5 +1,5 @@
-import 'package:app/features/data/datasources/data_source.dart';
-import 'package:app/features/data/datasources/local_repo.dart';
+import 'package:app/home/features/data/datasources/data_source.dart';
+import 'package:app/home/features/data/datasources/local_repo.dart';
 import '../../domain/entities/repo.dart';
 import '../../domain/repositories/github_repository.dart';
 

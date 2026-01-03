@@ -1,6 +1,6 @@
-import 'package:app/features/core/db/app_data_base.dart';
-import 'package:app/features/data/models/owner.dart';
-import 'package:app/features/data/models/repo.dart';
+import 'package:app/home/features/core/db/app_data_base.dart';
+import 'package:app/home/features/data/models/owner.dart';
+import 'package:app/home/features/data/models/repo.dart';
 import 'package:sqflite/sqflite.dart';
 
 /// Handles local caching of repositories using SQLite (Sqflite).

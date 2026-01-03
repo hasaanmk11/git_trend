@@ -1,9 +1,10 @@
-import 'package:app/features/data/datasources/data_source.dart';
-import 'package:app/features/data/datasources/local_repo.dart';
-import 'package:app/features/data/repositories/git_repo_imp.dart';
-import 'package:app/features/domain/usecases/fetch_trending_repos.dart';
-import 'package:app/features/presentation/pages/home_page.dart';
-import 'package:app/features/presentation/provider/repo_provider.dart';
+import 'package:app/home/features/data/datasources/data_source.dart';
+import 'package:app/home/features/data/datasources/local_repo.dart';
+import 'package:app/home/features/data/repositories/git_repo_imp.dart';
+import 'package:app/home/features/domain/usecases/fetch_trending_repos.dart';
+
+import 'package:app/home/features/presentation/provider/repo_provider.dart';
+import 'package:app/splash_screen/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => RepoProvider(usecase)),
       ],
       // MaterialApp is the root widget, and HomePage is the first screen displayed
-      child: MaterialApp(home: HomePage()),
+      child: MaterialApp(home: SplashScreen()),
     ),
   );
 }

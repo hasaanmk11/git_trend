@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:app/features/core/const/api_key.dart';
-import 'package:app/features/core/const/date_formate.dart';
-import 'package:app/features/data/models/repo.dart';
+import 'package:app/home/features/core/const/api_key.dart';
+import 'package:app/home/features/core/const/date_formate.dart';
+import 'package:app/home/features/data/models/repo.dart';
 import 'package:http/http.dart' as http;
 
 /// A data source class responsible for fetching repositories from GitHub's API.
@@ -26,8 +26,7 @@ class GithubRemoteDatasource {
   /// [page]: The page number for pagination.
   /// [days]: The number of days back to consider for trending repositories (default is 30).
   ///
-  /// Returns a [Future] containing a list of [RepoModel].
-  /// Throws an [Exception] if the HTTP response status is not 200.
+ 
   Future<List<RepoModel>> fetchRepos({required int page, int days = 30}) async {
     // Calculate the date `days` ago and format it for GitHub API
     final formattedDate = DateUtilsHelper.formattedDateFromNow(days);

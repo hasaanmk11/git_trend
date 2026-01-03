@@ -1,4 +1,4 @@
-import 'package:app/features/data/models/owner.dart';
+import 'package:app/home/features/data/models/owner.dart';
 import '../../domain/entities/repo.dart';
 
 /// Data model for a GitHub repository.
