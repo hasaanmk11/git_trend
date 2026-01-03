@@ -42,7 +42,7 @@ class RepoCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🔹 NAME
+            ///  NAME
             textOrShimmer(
               isLoading,
               width: 180,
@@ -57,7 +57,7 @@ class RepoCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
 
-            /// 🔹 DESCRIPTION
+            ///  DESCRIPTION
             textOrShimmer(
               isLoading,
               width: double.infinity,
@@ -75,11 +75,11 @@ class RepoCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            /// 🔹 FOOTER
+            ///  FOOTER
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                /// ⭐ STARS
+                ///  STARS
                 Row(
                   children: [
                     circleOrShimmer(
@@ -100,7 +100,7 @@ class RepoCard extends StatelessWidget {
                   ],
                 ),
 
-                /// 👤 OWNER
+                /// OWNER
                 Row(
                   children: [
                     avatarOrShimmer(isLoading, image),

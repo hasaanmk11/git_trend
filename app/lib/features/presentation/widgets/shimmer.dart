@@ -16,23 +16,23 @@ Widget shimmerCard() {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🔹 Repo name
+            ///  Repo name
             _shimmerLine(width: 180, height: 16),
             const SizedBox(height: 6),
 
-            /// 🔹 Description line 1
+            ///  Description line 1
             _shimmerLine(width: double.infinity, height: 14),
             const SizedBox(height: 6),
 
-            /// 🔹 Description line 2
+            ///  Description line 2
             _shimmerLine(width: 240, height: 14),
             const SizedBox(height: 12),
 
-            /// 🔹 Bottom row
+            ///  Bottom row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                /// ⭐ Stars
+                ///  Stars
                 Row(
                   children: [
                     _shimmerCircle(size: 20),
@@ -41,7 +41,7 @@ Widget shimmerCard() {
                   ],
                 ),
 
-                /// 👤 Owner
+                ///  Owner
                 Row(
                   children: [
                     _shimmerCircle(size: 28),
@@ -58,7 +58,7 @@ Widget shimmerCard() {
   );
 }
 
-/// ================= Helpers =================
+///  Helpers
 
 Widget _shimmerLine({required double width, required double height}) {
   return Container(
