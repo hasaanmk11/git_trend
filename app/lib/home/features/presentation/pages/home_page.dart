@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: buildAppBar(),
+      appBar: buildAppBar(),
       backgroundColor: const Color(0xffF2F4F7),
       body: Consumer<RepoProvider>(
         builder: (context, value, child) {

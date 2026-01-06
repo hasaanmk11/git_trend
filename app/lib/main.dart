@@ -35,8 +35,11 @@ void main() async {
         // RepoProvider uses the use case to fetch and manage repository data
         ChangeNotifierProvider(create: (_) => RepoProvider(usecase)),
       ],
-      // MaterialApp is the root widget, and HomePage is the first screen displayed
-      child: MaterialApp(home: SplashScreen()),
+
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     ),
   );
 }
