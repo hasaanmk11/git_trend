@@ -1,3 +1,4 @@
+import 'package:app/home/features/core/theme/colors.dart';
 import 'package:app/home/features/presentation/widgets/shimmer_helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -27,20 +28,14 @@ class RepoCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
         padding: const EdgeInsets.all(1.5), // 👈 gradient border thickness
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              Color.fromARGB(255, 247, 177, 55),
-              Color.fromARGB(255, 207, 207, 207),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(12),
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
         child: Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            border: Border.all(color: Colors.white.withValues(alpha: 0.2)),
+            color: AppColors.bgColor,
             borderRadius: BorderRadius.circular(10.5),
+
             boxShadow: isLoading
                 ? []
                 : [
@@ -63,7 +58,7 @@ class RepoCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -75,7 +70,7 @@ class RepoCard extends StatelessWidget {
                 width: double.infinity,
                 child: Text(
                   description ?? 'NO DESCRIPTION ',
-                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                  style: const TextStyle(fontSize: 14, color: Colors.white70),
                 ),
               ),
               const SizedBox(height: 6),
@@ -107,7 +102,10 @@ class RepoCard extends StatelessWidget {
                       textOrShimmer(
                         isLoading,
                         width: 60,
-                        child: Text('$stars stars'),
+                        child: Text(
+                          '$stars stars',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
@@ -122,7 +120,10 @@ class RepoCard extends StatelessWidget {
                         width: 70,
                         child: Text(
                           owner ?? '',
-                          style: const TextStyle(fontWeight: FontWeight.w500),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],

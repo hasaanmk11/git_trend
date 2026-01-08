@@ -1,3 +1,4 @@
+import 'package:app/home/features/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 /// A screen that displays detailed information about a GitHub repository.
@@ -42,8 +43,12 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.bgColor,
       // App bar with repository name or 'Details' if name is null
-      appBar: AppBar(title: Text(name ?? 'Details')),
+      appBar: AppBar(
+        title: Text(name ?? 'Details', style: TextStyle(color: Colors.white)),
+        backgroundColor: AppColors.bgColor,
+      ),
 
       // Body with padding around content
       body: Padding(
@@ -71,7 +76,11 @@ class Details extends StatelessWidget {
             // Repository name in bold
             Text(
               name ?? '',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
 
             const SizedBox(height: 10),
@@ -79,7 +88,7 @@ class Details extends StatelessWidget {
             // Repository description in smaller, gray text
             Text(
               description ?? '',
-              style: const TextStyle(fontSize: 16, color: Colors.black54),
+              style: TextStyle(fontSize: 16, color: Colors.white),
             ),
 
             const SizedBox(height: 20),
@@ -89,7 +98,10 @@ class Details extends StatelessWidget {
               children: [
                 const Icon(Icons.star, color: Colors.amber),
                 const SizedBox(width: 4),
-                Text('$stars stars', style: const TextStyle(fontSize: 16)),
+                Text(
+                  '$stars stars',
+                  style: TextStyle(fontSize: 16, color: Colors.white),
+                ),
               ],
             ),
 
@@ -98,9 +110,12 @@ class Details extends StatelessWidget {
             // Row showing repository owner with icon
             Row(
               children: [
-                const Icon(Icons.person),
+                const Icon(Icons.person, color: Colors.white),
                 const SizedBox(width: 4),
-                Text(owner ?? '', style: const TextStyle(fontSize: 16)),
+                Text(
+                  owner ?? '',
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                ),
               ],
             ),
           ],

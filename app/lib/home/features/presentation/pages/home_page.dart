@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      backgroundColor: const Color(0xffF2F4F7),
+      backgroundColor: Color(0xFF212332),
       body: Consumer<RepoProvider>(
         builder: (context, value, child) {
           if (value.isLoading && value.repos.isEmpty) {
